@@ -8,14 +8,22 @@ from src.recommenders.content_based import ContentBasedRecommender
 def main():
     data_dir = Path("data/processed")
 
-    movies = pd.read_csv(data_dir / "movies_processed.csv")
+    # movies = pd.read_csv(data_dir / "movies_processed.csv")
+
+    # recommender = ContentBasedRecommender()
+    # recommender.fit(movies)
+
+    # recommendations = recommender.recommend("Avatar")
+    # print(recommendations)
+
+    from src.recommenders.content_based import ContentBasedRecommender
 
     recommender = ContentBasedRecommender()
-    recommender.fit(movies)
 
     recommendations = recommender.recommend("Avatar")
 
     print(recommendations)
+
 
 
 if __name__ == "__main__":

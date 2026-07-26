@@ -1,29 +1,42 @@
 import pandas as pd
 
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.metrics.pairwise import cosine_similarity
+# from sklearn.feature_extraction.text import CountVectorizer
+# from sklearn.metrics.pairwise import cosine_similarity
 
+from pathlib import Path
+
+import joblib
+
+PROJECT_ROOT = Path(__file__).resolve().parents[2]
+
+MODEL_DIR = PROJECT_ROOT / "models"
+
+DATA_DIR = PROJECT_ROOT / "data" / "processed"
 class ContentBasedRecommender:
 
     def __init__(self):
-        self.vectorizer = CountVectorizer(
-            max_features=5000,
-            stop_words="english"
+
+        self.vectorizer = joblib.load(
+            MODEL_DIR / "vectorizer.joblib"
         )
 
-        self.movies = None
-        self.vectors = None
-        self.similarity = None
+        self.similarity = joblib.load(
+            MODEL_DIR / "similarity.joblib"
+        )
 
-    def fit(self, movies):
+        self.movies = pd.read_csv(
+            DATA_DIR / "movies_processed.csv"
+        )
 
-        self.movies = movies.copy()
+    # def fit(self, movies):
 
-        self.vectors = self.vectorizer.fit_transform(
-            self.movies["tags"]
-        ).toarray()
+    #     self.movies = movies.copy()
 
-        self.similarity = cosine_similarity(self.vectors)
+    #     self.vectors = self.vectorizer.fit_transform(
+    #         self.movies["tags"]
+    #     ).toarray()
+
+    #     self.similarity = cosine_similarity(self.vectors)
 
     def recommend(self, movie_name):
 
