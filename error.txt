@@ -1,0 +1,19 @@
+Obtaining file:///D:/CODING/1.%20Projects%20%28Portfolio%29/2.%20Hackathons/8.%20Demo%20Hackathon%20Practice-3/Code/movie-recommendation-system
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Checking if build backend supports build_editable: started
+  Checking if build backend supports build_editable: finished with status 'done'
+  Getting requirements to build editable: started
+  Getting requirements to build editable: finished with status 'error'
+  error: subprocess-exited-with-error
+  
+  Getting requirements to build editable did not run successfully.
+  exit code: 1
+  
+  [2 lines of output]
+  running egg_info
+  error: Invalid distribution name or version syntax: __init__-0.0.0
+  [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+ERROR: Failed to build 'file:///D:/CODING/1.%20Projects%20%28Portfolio%29/2.%20Hackathons/8.%20Demo%20Hackathon%20Practice-3/Code/movie-recommendation-system' when getting requirements to build editable
