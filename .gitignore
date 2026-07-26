@@ -9,6 +9,9 @@ __pycache__/
 # Jupyter
 .ipynb_checkpoints/
 
+# Dataset
+data/raw/*.csv
+
 # Environment
 .env
 
