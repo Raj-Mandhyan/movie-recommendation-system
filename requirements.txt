@@ -1,3 +1,5 @@
+annotated-doc==0.0.4
+annotated-types==0.8.0
 anyio==4.14.2
 argon2-cffi==25.1.0
 argon2-cffi-bindings==25.1.0
@@ -21,6 +23,7 @@ debugpy==1.8.21
 decorator==5.3.1
 defusedxml==0.7.1
 executing==2.2.1
+fastapi==0.140.0
 fastjsonschema==2.22.0
 flake8==7.3.0
 fonttools==4.63.0
@@ -62,7 +65,7 @@ matplotlib==3.11.1
 matplotlib-inline==0.2.2
 mccabe==0.7.0
 mistune==3.3.4
--e git+https://github.com/Raj-Mandhyan/movie-recommendation-system.git@c66288dcd875269f7ab85bbe63a5df166d9a43ab#egg=movie_recommendation_system
+-e git+https://github.com/Raj-Mandhyan/movie-recommendation-system.git@6ace59086bd2dfbfe0df3bb3f398f612aeacec9b#egg=movie_recommendation_system
 mypy_extensions==1.1.0
 narwhals==2.24.0
 nbclient==0.11.0
@@ -86,6 +89,8 @@ psutil==7.2.2
 pure_eval==0.2.3
 pycodestyle==2.14.0
 pycparser==3.0
+pydantic==2.13.4
+pydantic_core==2.46.4
 pyflakes==3.4.0
 Pygments==2.20.0
 pyparsing==3.3.2
@@ -109,16 +114,19 @@ Send2Trash==2.1.0
 six==1.17.0
 soupsieve==2.9.1
 stack-data==0.6.3
+starlette==1.3.1
 terminado==0.18.1
 threadpoolctl==3.6.0
 tinycss2==1.5.1
 tornado==6.5.7
 tqdm==4.69.1
 traitlets==5.15.1
+typing-inspection==0.4.2
 typing_extensions==4.16.0
 tzdata==2026.3
 uri-template==1.3.0
 urllib3==2.7.0
+uvicorn==0.51.0
 wcwidth==0.8.2
 webcolors==25.10.0
 webencodings==0.5.1
