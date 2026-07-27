@@ -65,7 +65,7 @@ matplotlib==3.11.1
 matplotlib-inline==0.2.2
 mccabe==0.7.0
 mistune==3.3.4
--e git+https://github.com/Raj-Mandhyan/movie-recommendation-system.git@6ace59086bd2dfbfe0df3bb3f398f612aeacec9b#egg=movie_recommendation_system
+-e git+https://github.com/Raj-Mandhyan/movie-recommendation-system.git@b69c79fc010c6cfdf04b239f8bf9b735775b5400#egg=movie_recommendation_system
 mypy_extensions==1.1.0
 narwhals==2.24.0
 nbclient==0.11.0
@@ -101,6 +101,7 @@ pytokens==0.4.1
 pywinpty==3.0.5
 PyYAML==6.0.3
 pyzmq==27.1.0
+RapidFuzz==3.14.5
 referencing==0.37.0
 regex==2026.7.19
 requests==2.34.2

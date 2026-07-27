@@ -6,6 +6,12 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# Models
+models/*.joblib
+models/*.index
+models/*.npy
+models/embedding_model/
+
 # Jupyter
 .ipynb_checkpoints/
 
