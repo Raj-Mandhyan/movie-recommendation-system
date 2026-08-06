@@ -1,43 +1,91 @@
 # Virtual Environment
 .venv/
+venv/
+env/
+ENV/
 
 # Python
 __pycache__/
 *.py[cod]
 *$py.class
+*.so
+.Python
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
 
 # Models
-models/*.joblib
-models/*.index
-models/*.npy
-models/embedding_model/
+# models/*.joblib
+# models/*.index
+# models/*.npy
+# models/embedding_model/
 
 # Jupyter
 .ipynb_checkpoints/
 
 # Dataset
 data/raw/*.csv
+data/cache/
+data/processed/*.csv
 
 # Environment
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
 
-# VS Code
+# VS Code & IDEs
 .vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 
 # macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
 
 # Logs
 *.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Build
+# Build and Frontend dist
 build/
 dist/
-*.egg-info/
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/out/
+node_modules/
 
-# Pytest
+# Pytest & Coverage
 .pytest_cache/
-
-# Coverage
 .coverage
 htmlcov/
+.tox/
+.noseids
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/

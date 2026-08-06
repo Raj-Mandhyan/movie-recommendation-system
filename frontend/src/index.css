@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-glass-default: rgba(10, 8, 20, 0.45);
+  --color-glass-hover: rgba(20, 16, 40, 0.6);
+  --color-glass-border: rgba(255, 255, 255, 0.05);
+  --color-glass-borderHover: rgba(255, 255, 255, 0.12);
+  --color-neon-violet: #a855f7;
+  --color-neon-cyan: #06b6d4;
+  --color-neon-rose: #f43f5e;
+  
+  --font-sans: "Outfit", "Inter", "sans-serif";
+  
+  --animate-pulse-slow: pulse 12s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-drift: drift 30s ease-in-out infinite;
+
+  @keyframes drift {
+    0%, 100% { transform: translate(0px, 0px) scale(1); }
+    33% { transform: translate(30px, -40px) scale(1.1); }
+    66% { transform: translate(-20px, 20px) scale(0.95); }
+  }
+}
+
+body {
+  background-color: #050409;
+  color: #e5e7eb;
+  font-family: "Outfit", "Inter", sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Premium Utilities */
+.glassmorphism {
+  background: rgba(10, 8, 20, 0.45);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glassmorphism-hover {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glassmorphism-hover:hover {
+  background: rgba(20, 16, 40, 0.6);
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px -10px rgba(168, 85, 247, 0.15);
+}
+
+.neon-glow-violet {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.2);
+}
+
+.neon-glow-cyan {
+  box-shadow: 0 0 20px rgba(6, 118, 212, 0.2);
+}
+
+/* Hide scrollbars but keep functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Custom Scrollbar for Details Page */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #050409;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.3);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.6);
+}
+
+/* Infinite drifting animations */
+@keyframes drift-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes drift-right {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.animate-drift-left {
+  animation: drift-left 120s linear infinite;
+}
+
+.animate-drift-right {
+  animation: drift-right 120s linear infinite;
+}
