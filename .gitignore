@@ -34,9 +34,9 @@ MANIFEST
 .ipynb_checkpoints/
 
 # Dataset
-data/raw/*.csv
+# data/raw/*.csv
 data/cache/
-data/processed/*.csv
+# data/processed/*.csv
 
 # Environment
 .env
