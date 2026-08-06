@@ -17,7 +17,6 @@ class RecommenderService:
         # 1. Load CSV data
         self.movies_processed = pd.read_csv(DATA_PROCESSED / "movies_processed.csv")
         self.movies_raw = pd.read_csv(DATA_RAW / "movies.csv")
-        self.tmdb_movies = pd.read_csv(DATA_RAW / "tmdb_5000_movies.csv")
         self.links = pd.read_csv(DATA_RAW / "links.csv")
         self.ratings = pd.read_csv(DATA_RAW / "ratings.csv")
 
@@ -37,41 +36,29 @@ class RecommenderService:
         self.idx_to_movie = {idx: movie for idx, movie in enumerate(unique_movies)}
         
         # 4. Instantiate PyTorch Matrix Factorization Model (black-box)
-        # n_users = len(self.ratings["userId"].unique())
-        # n_movies = len(unique_movies)
-        # self.collab_model = MatrixFactorization(
-        #     n_users=n_users,
-        #     n_movies=n_movies,
-        #     embedding_dim=64
-        # )
-
-        # del self.ratings
-
-        # import gc
-        # gc.collect()
+        n_users = len(self.ratings["userId"].unique())
+        n_movies = len(unique_movies)
+        self.collab_model = MatrixFactorization(
+            n_users=n_users,
+            n_movies=n_movies,
+            embedding_dim=64
+        )
         
-        # collab_pth = MODEL_DIR / "collaborative_model" / "matrix_factorization.pth"
-        # if collab_pth.exists():
-        #     self.collab_model.load_state_dict(
-        #         torch.load(collab_pth, map_location="cpu")
-        #     )
-        # self.collab_model.eval()
-
-        self.n_users = len(self.ratings["userId"].unique())
-        self.n_movies = len(unique_movies)
-
-        self.collab_model = None
-
-        self.collab_pth = MODEL_DIR / "collaborative_model" / "matrix_factorization.pth"
+        collab_pth = MODEL_DIR / "collaborative_model" / "matrix_factorization.pth"
+        if collab_pth.exists():
+            self.collab_model.load_state_dict(
+                torch.load(collab_pth, map_location="cpu")
+            )
+        self.collab_model.eval()
 
         # 5. Instantiate Black-box Content-Based Recommender
-        self.content_recommender = None
+        self.content_recommender = ContentBasedRecommender()
 
         # 6. Instantiate Hybrid Recommender
         self.hybrid_recommender = HybridRecommender(
-            content_model=None,
+            content_model=self.content_recommender,
             embedding_model=None,
-            collaborative_model=None
+            collaborative_model=self.collab_model
         )
 
     def get_movie_by_tmdb_id(self, tmdb_id: int) -> dict:
@@ -96,7 +83,7 @@ class RecommenderService:
         
         if tmdb_raw_path.exists():
             try:
-                tmdb_movies = self.tmdb_movies
+                tmdb_movies = pd.read_csv(tmdb_raw_path)
                 match = tmdb_movies[tmdb_movies["id"] == tmdb_id]
                 if not match.empty:
                     overview = str(match.iloc[0]["overview"])
@@ -150,25 +137,6 @@ class RecommenderService:
         Compute cosine similarity scores in the collaborative embedding space
         between the query movie and all other movies in ratings.csv.
         """
-
-        if self.collab_model is None:
-
-            self.collab_model = MatrixFactorization(
-                n_users=self.n_users,
-                n_movies=self.n_movies,
-                embedding_dim=64
-            )
-
-            if self.collab_pth.exists():
-                self.collab_model.load_state_dict(
-                    torch.load(self.collab_pth, map_location="cpu")
-                )
-
-            self.collab_model.eval()
-
-            self.hybrid_recommender.collaborative_model = self.collab_model
-
-
         idx = self.movie_to_idx.get(movie_lens_id)
         if idx is None:
             return {}
@@ -212,10 +180,6 @@ class RecommenderService:
         # 1. Gather Content-Based scores
         # The content_recommender outputs recommended titles (black-box API)
         try:
-            if self.content_recommender is None:
-                self.content_recommender = ContentBasedRecommender()   
-
-            self.hybrid_recommender.content_model = self.content_recommender
             content_titles = self.content_recommender.recommend(q_title)
         except Exception:
             content_titles = []
