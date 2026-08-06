@@ -1,1 +1,2 @@
 models/similarity.joblib filter=lfs diff=lfs merge=lfs -text
+models/faiss.index filter=lfs diff=lfs merge=lfs -text
