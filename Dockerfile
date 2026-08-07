@@ -31,5 +31,6 @@ COPY models/ /app/models/
 EXPOSE 8000
 
 RUN python -c "import faiss; print('Docker FAISS:', faiss.__version__)"
+RUN python -c "f=open('/app/models/faiss.index','rb'); print(f.read(64))"
 # Start FastAPI server using uvicorn
 CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
