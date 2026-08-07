@@ -30,5 +30,6 @@ COPY models/ /app/models/
 # Expose port
 EXPOSE 8000
 
+RUN python -c "import faiss; print('Docker FAISS:', faiss.__version__)"
 # Start FastAPI server using uvicorn
 CMD ["uvicorn", "src.api.main:app", "--host", "0.0.0.0", "--port", "8000"]
