@@ -1,7 +1,7 @@
 fastapi
 uvicorn
 python-dotenv
-faiss-cpu
+faiss-cpu==1.14.3
 httpx
 joblib
 nltk
